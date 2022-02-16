@@ -1,0 +1,16 @@
+.list{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   
+  
+
+  
+}
+.form{
+    display:flex;
+     flex-direction:row;
+     align-items: center;
+    justify-content: space-around;
+
+}

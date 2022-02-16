@@ -1,12 +1,19 @@
 const express=require('express');
 const app = express();
+// const cors = require('cors')
 require('dotenv').config({path:"./config/.env"})
+
 const connectDB= require("./config/connectDB")
 connectDB()
-const User= require('./model/user')
+const User= require('./model/User');
+// const router = require('./routes/users');
+
+// const userRouter = require('./routes/users');
+// app.use('/users',userRouter)
+//  app.use(cors())
 app.use(express.json())
 //Post request//
-app.post('/user/post',async(req,res)=>{
+app.post('/user/add',async(req,res)=>{
     const {name,email,phone}=req.body
     const newUser= new User({name,email,phone})
     try{
@@ -29,15 +36,17 @@ app.get('/users/get',async(req,res)=>{
 })
 
 //Get One User//
-app.get('/user/get/:id'),async(req,res)=>{
+app.get('/user/get/:id',async (req,res)=>{
     try{
-const oneuser= await User.findById(req.params.id)
-res.send(oneuser)
+const user= await User.findById(req.params.id)
+res.send(user)
     }
     catch(error){
         res.send(error.message);
     }
-}
+})
+
+
 //delete //
 app.delete('/user/delete/:id',async(req,res)=>{
     try{
